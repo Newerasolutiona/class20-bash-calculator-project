@@ -1,0 +1,12 @@
+
+====Assignment=====
+Deploy Sonarqube with PostgreSQL in docker using imperative(one-time commands). Note: SonarQube runs on port 9000 while PostgreSQL runs on port 5432. (In the New Era Github account, create a branch/use an existing branch create a file with the commands, and attach a screenshot of the SonarQube interface)
+
+docker network create sonarqube_network
+
+docker run --name postgres  -e POSTGRES_USER=root -e POSTGRES_PASSWORD=Test12345  -p 5432:5432 --network sonarqube_network -d postgres:latest
+
+docker run -d --name sonarqube   -p 9000:9000  -e sonar.jdbc.url=jdbc:postgresql://postgres/postgres  -e sonar.jdbc.username=root -e sonar.jdbc.password=Test12345  --network sonarqube_network sonarQube:latest
+
+
+----Note---- Username: admin  | Password: admin -------- 
